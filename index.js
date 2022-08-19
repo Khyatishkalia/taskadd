@@ -41,12 +41,18 @@ app.post("/compose", (req, res) => {
     date:dateEntered,
   }
   posts.push(post);//storing this object in an array
-  const userContact =  User.insertMany(post);
-  if(userContact){
-      const userMessage =  userContact.addMessage(post.title,post.content,post.date);
-       userContact.save();
-      res.status(201).json({message:"user contact success"});
-  }
+  
+  // yee nhii ho rhaa m database m store krne ki try kr rhaa thaa
+  
+//   const userContact =  User.insertMany(post);
+//   if(userContact){
+//       const userMessage =  userContact.addMessage(post.title,post.content,post.date);
+//        userContact.save();
+//       res.status(201).json({message:"user contact success"});
+//   }
+  
+  
+  
  res.redirect("/")
  
 })
