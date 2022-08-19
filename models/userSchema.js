@@ -1,13 +1,18 @@
+
 const mongoose =require("mongoose");
 
 
-const userSchema = new mongoose.Schema({
+const taskSchema = new mongoose.Schema({
+    id: {
+        type: Number,
+        autoIncrement: true,
+    },
     title:{
         type:String,
         required:true,
           unique:true 
     },
-    content:{
+    description:{
         type:String,
         required:true,
          unique:true 
@@ -17,12 +22,15 @@ const userSchema = new mongoose.Schema({
         type:Date,
         default:Date.now
     },
+    status: {
+        type: String
+    }
     
 })
 
 
 // store the message -------------# 36  4
-userSchema.methods.addMessage = async function(title,content,date){
+taskSchema.methods.addMessage = async function(title,content,date){
 try{
 this.messages = this.messages.concat({title,content,date});// message add hogyaa h bss ab save krnaa h
 await this.save();
@@ -32,5 +40,5 @@ return this.messages;
 }
 }
 // model collection create kr rhe h jiske andr hm bhott sare documents likh skte h
-const User =  mongoose.model("User",userSchema);
-module.exports = User;
+const Task =  mongoose.model("Task",taskSchema);
+module.exports = Task;
