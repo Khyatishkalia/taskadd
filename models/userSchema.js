@@ -30,9 +30,9 @@ const taskSchema = new mongoose.Schema({
 
 
 // store the message -------------# 36  4
-taskSchema.methods.addMessage = async function(title,content,date){
+taskSchema.methods.addMessage = async function(title,description,date,status){
 try{
-this.messages = this.messages.concat({title,content,date});// message add hogyaa h bss ab save krnaa h
+this.messages = this.messages.concat({title,description,date,status});// message add hogyaa h bss ab save krnaa h
 await this.save();
 return this.messages;
 }catch(err){

@@ -16,7 +16,7 @@ const  mongoose = require("mongoose");
  */
 
   // yee h ofline database ka  yee h Compass walla
-  mongoose.connect("mongodb://localhost:27017/taskdb",{ useNewUrlParser:true,
+  mongoose.connect("mongodb://localhost:27017/task",{ useNewUrlParser:true,
 }).then(()=>{
   console.log("connection successful");
 }).catch((err)=>console.log("connection failed"));

@@ -1,10 +1,10 @@
 const express = require("express");
-const User = require("../models/userSchema");
+const Task = require("../models/userSchema");
 
-
+// const homeStartingContent = "sdsjdhsuidsdfhw";
 const showTasks = (req, res) => {
-    User.find().then((response)=>{
-        res.render("home", { Para: homeStartingContent, Blogs:response });
+    Task.find().then((response)=>{
+        res.render("home", {  Blogs:response });
       })
 }
     
@@ -13,12 +13,14 @@ const updateTask = (req, res) => {
     let data = req.body.newtask;
     let text = req.body.taskbody;
     let date = req.body.date;
+    let status = req.body.status;
     let post = {
         title: data,
-        content: text,
-        date:date,
+        description: text,
+        date: date,
+        status:status,
     }
-    User.findByIdAndUpdate(id, {$set:post}, {new:true}).then((response)=>{
+    Task.findByIdAndUpdate(id, {$set:post}, {new:true}).then((response)=>{
         res.redirect('/')
     }
     )
@@ -28,23 +30,36 @@ const createTask = (req, res) => {
     let data = req.body.newtask;
     let text = req.body.taskbody;
       var input = req.body.date;
-      var dateEntered = new Date(input);
+    var dateEntered = new Date(input);
+    let status = req.body.status;
     let post = {
         title: data,
-          content: text,
-        date:dateEntered,
+          description: text,
+        date: dateEntered,
+        status:status,
     }
-    User.create(post).then((response)=>{
+    Task.create(post).then((response)=>{
         res.redirect('/')
     }
     )
 }
 
 const showSingleTask = (req, res) => {
-    User.findById(req.params._id).then((response)=>{
+    Task.findById(req.params._id).then((response)=>{
         res.render("post", {blog:response})
       }
       )
 }
 
-module.exports = { showTasks, updateTask, createTask, showSingleTask };
+const compose = (req, res) => {
+  res.render("compose");
+}
+
+const getupdatetemplate = (req, res) => {
+    Task.findById(req.params._id).then((response) => {
+   
+    res.render("update", { blog: response });
+  })
+}
+
+module.exports = { showTasks, updateTask, createTask, showSingleTask,compose,getupdatetemplate };
