@@ -12,12 +12,12 @@
             <%= blog.title %>
         </h1>
         <p>
-            <a href="/posts/<%= blog.title%>">Read more</a>
+            <a href="/posts/<%= blog._id%>">Read more</a>
         </p>
         <%})%>
             <% for(var i=0;i<Blogs.length;i++){%>
-     <h1> <%= Blogs[i].title %></h1>
-    <p>   <%= Blogs[i].content %></p>
+     <!-- <h1> <%= Blogs[i].title %></h1>
+    <p>   <%= Blogs[i].content %></p> -->
   
 <%}%> 
             <!-- <% console.log(Blogs)%>
